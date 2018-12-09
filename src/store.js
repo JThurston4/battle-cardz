@@ -76,6 +76,7 @@ export default new Vuex.Store({
     },
 
     home() {
+      debugger
       router.push({ name: 'home' })
     }
   }

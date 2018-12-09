@@ -2,12 +2,13 @@
   <div class="game container-fluid bg">
     <div class="row">
       <div class="col-12">
-        <button type="button" class="btn btn-outline-secondary d-flex lefted" @click="home-page">Home</button>
+        <button type="button" class="btn btn-outline-secondary d-flex lefted" @click="homePage">Home</button>
       </div>
     </div>
     <opponentHand class="row"></opponentHand>
     <!-- <button :disabled="!ready()" :class="{'btn-success':ready()}" class="btn btn-primary" @click="playBall">Battle</button> -->
-    <div v-if="ready()"><button v-if="!game.opponent.dead && !game.player.dead" class="btn btn-primary" @click="battle">Battle</button></div>
+    <div v-if="ready()"><button v-if="!game.opponent.dead && !game.player.dead" class="btn btn-primary battle-button"
+        @click="battle">Battle</button></div>
     <div v-if="game.opponent.dead && game.player.dead" class="hand-text">
       <h1><i class="fas fa-balance-scale"></i> Draw<i class="fas fa-balance-scale"></i> </h1>
     </div>
@@ -55,7 +56,7 @@
       battle() {
         this.$store.dispatch("battle", { gameId: this.$route.params.gameId, cardIds: this.cards })
       },
-      home() {
+      homePage() {
         this.$store.dispatch("home")
       }
     },
@@ -77,5 +78,9 @@
     background-image: url("../assets/blue_body_repeat.jpg");
     height: 100vh;
     background-size: cover;
+  }
+
+  .battle-button {
+    /* margin-bottom: 1rem; */
   }
 </style>

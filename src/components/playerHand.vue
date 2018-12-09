@@ -4,7 +4,7 @@
       <p>Cards in Deck: {{getPlayer.remainingCards}}</p>
     </div>
     <div class="col-6 centered2">
-      <h3 class="hand-text" v-if="getPlayer.hand.length">Your Hand</h3>
+      <h3 class="hand-text player-hand" v-if="getPlayer.hand.length">Your Hand</h3>
     </div>
     <div class="col-3 centered ">
       <p>Cards in graveyard: {{getPlayer.deadCards.length}}</p>
@@ -93,5 +93,9 @@
 
   .righted {
     justify-content: flex-end;
+  }
+
+  .player-hand {
+    /* padding-top: 1rem; */
   }
 </style>
