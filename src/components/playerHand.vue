@@ -1,8 +1,8 @@
 <template>
   <div class="playerHand align-items-end justify-content-center" v-if="game.id">
     <h3 class="col-12">Your Hand</h3>
-    <div v-for="card in getPlayerHand" @click="active.cardId=card.id" class="col-2">
-      <div :class="{'border-success my-border': card.id == active.cardId}" class="card text-white bg-dark mb-3"
+    <div v-for="card in getPlayerHand" @click="testAttack(active.cardId)" class="col-2">
+      <div  @click="active.cardId=card.id" :class="{'border-success my-border': card.id == active.cardId}" class="card text-white bg-dark mb-3"
         style="max-width: 20rem;">
         <!-- <div class="card-header">{{card.name}}</div> -->
         <div class="card-body">
@@ -40,7 +40,14 @@
         return this.$store.state.game
       }
     },
-    methods: {}
+    methods: {
+      attack(cardId) {
+        this.$store.dispatch("attack", cardId)
+      },
+      testAttack(cardId) {
+        this.$store.dispatch("playerCard", cardId)
+      }
+    }
   }
 
 </script>

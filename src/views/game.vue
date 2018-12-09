@@ -2,8 +2,8 @@
   <div class="game container-fluid bg">
     <opponentHand class="row"></opponentHand>
     <playerHand class="row"></playerHand>
-    <!-- {{getGame.opponent.hand}} -->
-    <!-- {{getGame}} -->
+    <div></div>
+    {{cards}}
   </div>
 </template>
 
@@ -21,9 +21,21 @@
     computed: {
       game() {
         return this.$store.state.game
+      },
+      cards() {
+        return {
+          playerCard: this.$store.state.playerCard,
+          opponentCard: this.$store.state.opponentCard
+        }
       }
     },
-    methods: {},
+    methods: {
+      playBall() {
+        if (playerCard.length > 1) {
+          console.log("play ball")
+        }
+      }
+    },
     components: {
       opponentHand,
       playerHand
@@ -39,6 +51,7 @@
 
 <style>
   .bg {
-    height: 100vh
+    background-image: url("../assets/blue_body_repeat.jpg");
+    height: 100vh;
   }
 </style>

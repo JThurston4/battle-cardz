@@ -15,7 +15,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     games: [],
-    game: {}
+    game: {},
+    playerCard: '',
+    opponentCard: ''
   },
   mutations: {
     setGames(state, games) {
@@ -23,6 +25,14 @@ export default new Vuex.Store({
     },
     setGame(state, game) {
       state.game = game
+    },
+    setPlayerCard(state, playerCard) {
+      state.playerCard = playerCard
+      console.log(state.playerCard)
+    },
+    setOpponentCard(state, opponentCard) {
+      state.opponentCard = opponentCard
+      console.log(state.opponentCard)
     }
   },
   actions: {
@@ -46,6 +56,16 @@ export default new Vuex.Store({
           commit('setGame', res.data.game)
           router.push({ name: 'game', params: { gameId: res.data.game.id } })
         })
+    },
+
+    attack({ commit }, cardId) {
+      api.put
+    },
+    playerCard({ commit }, playerCardId) {
+      commit('setPlayerCard', playerCardId)
+    },
+    attackedCard({commit}, opponentCardId) {
+      commit('setOpponentCard', opponentCardId)
     }
   }
 })

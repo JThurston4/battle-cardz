@@ -2,8 +2,8 @@
   <div class="opponentHand justify-content-center" v-if="game.id">
     <h3 class="col-12">Opponent's Hand</h3>
     <!-- {{hand}} -->
-    <div v-for="card in getOpponentHand" class="col-2" @click="active.cardId=card.id">
-      <div :class="{'border-success my-border': card.id == active.cardId}" class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+    <div v-for="card in getOpponentHand" class="col-2" @click="attackedCard(active.cardId)">
+      <div @click="active.cardId=card.id" :class="{'border-success my-border': card.id == active.cardId}" class="card text-white bg-dark mb-3" style="max-width: 20rem;">
         <div class="card-body">
           <div class="card-text right">{{card.name}}</div>
           <img class="card-img" :src="card.img"></img>
@@ -38,7 +38,12 @@
         return this.$store.state.game
       }
     },
-    methods: {}
+    methods: {
+      attackedCard(cardId) {
+        // console.log(cardId)
+        this.$store.dispatch('attackedCard', cardId)
+      }
+    }
   }
 
 </script>
