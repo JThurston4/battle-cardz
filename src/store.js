@@ -16,8 +16,8 @@ export default new Vuex.Store({
   state: {
     games: [],
     game: {},
-    playerCard: '',
-    opponentCard: ''
+    playerCardId: '',
+    opponentCardId: ''
   },
   mutations: {
     setGames(state, games) {
@@ -25,14 +25,15 @@ export default new Vuex.Store({
     },
     setGame(state, game) {
       state.game = game
+      console.log(state.game)
     },
-    setPlayerCard(state, playerCard) {
-      state.playerCard = playerCard
-      console.log(state.playerCard)
+    setPlayerCard(state, playerCardId) {
+      state.playerCardId = playerCardId
+      // console.log(state.playerCardId)
     },
-    setOpponentCard(state, opponentCard) {
-      state.opponentCard = opponentCard
-      console.log(state.opponentCard)
+    setOpponentCard(state, opponentCardId) {
+      state.opponentCardId = opponentCardId
+      // console.log(state.opponentCardId)
     }
   },
   actions: {
@@ -46,7 +47,7 @@ export default new Vuex.Store({
       // debugger
       api.get('/' + gameId)
         .then(res => {
-          console.log(res.data.data)
+          // console.log(res.data.data)
           commit('setGame', res.data.data)
         })
     },
@@ -58,14 +59,24 @@ export default new Vuex.Store({
         })
     },
 
-    attack({ commit }, cardId) {
-      api.put
+    battle({ commit }, payload) {
+      api.put('/' + payload.gameId, payload.cardIds)
+        .then(res => {
+          // debugger
+          commit("setGame", res.data.game)
+        })
     },
+
     playerCard({ commit }, playerCardId) {
       commit('setPlayerCard', playerCardId)
     },
-    attackedCard({commit}, opponentCardId) {
+
+    attackedCard({ commit }, opponentCardId) {
       commit('setOpponentCard', opponentCardId)
+    },
+
+    home() {
+      router.push({ name: 'home' })
     }
   }
 })

@@ -5,11 +5,19 @@
       <router-link to="/about">About</router-link>
     </div>
     <div class="home">
-      <div @click="makeGame" v-model="gameConfig.set = 1">DECK 1</div>
-      <div @click="makeGame" v-model="gameConfig.set = 2">DECK 2</div>
-      <div @click="makeGame" v-model="gameConfig.set = 3">DECK 3</div>
-      <div @click="makeGame" v-model="gameConfig.set = 4">DECK 4</div>
-      <div @click="getGames">GET GAMES {{games}}</div>
+      <h1>Battle Cardz</h1>
+      <div><button type="button" class="btn btn-outline-primary btn-width" @click="makeGame" v-model="gameConfig.set = 2">DECK
+          1 (easy)</button>
+      </div>
+      <div><button type="button" class="btn btn-outline-primary btn-width" @click="makeGame" v-model="gameConfig.set = 3">DECK
+          2 (medium)</button>
+      </div>
+      <div><button type="button" class="btn btn-outline-primary btn-width" @click="makeGame" v-model="gameConfig.set = 4">DECK
+          3 (medium)</button>
+      </div>
+      <div><button type="button" class="btn btn-outline-danger btn-width" @click="makeGame" v-model="gameConfig.set = 1">DECK
+          4 (hard)</button>
+      </div>
     </div>
   </div>
 </template>
@@ -70,5 +78,13 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
+  }
+
+  .hard {
+    color: red;
+  }
+
+  .btn-width {
+    width: 200px;
   }
 </style>
